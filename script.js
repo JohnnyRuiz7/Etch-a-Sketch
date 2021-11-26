@@ -1,10 +1,18 @@
 const body = document.querySelector('body')
-const button = document.createElement('button')
+const btnReset = document.createElement('button')
+const btnClear = document.createElement('button')
+const options = document.createElement('div')
 const board = document.createElement('div')
 
 board.setAttribute('class', 'grid')
-button.textContent = 'Reset'
-body.appendChild(button)
+options.setAttribute('class', 'options')
+btnReset.textContent = 'Reset'
+btnClear.textContent = 'Clear'
+btnReset.setAttribute('class', 'reset')
+btnClear.setAttribute('class', 'clear')
+body.appendChild(options)
+options.appendChild(btnReset)
+options.appendChild(btnClear)
 body.appendChild(board)
 let height = 16
 let width = 16
@@ -27,6 +35,10 @@ function createGrid() {
     }
 }
 
+let newRed = []
+let newGreen = []
+let newBlue = []
+
 function draw() {
     setTimeout(() => {
         const board = document.querySelectorAll('.box')
@@ -38,9 +50,9 @@ function draw() {
                 randomRGB = `rgb(${red}, ${green}, ${blue})`
             if (board[i].style.backgroundColor == '') {
                 board[i].style.backgroundColor = randomRGB
-                newRed = red * 0.105
-                newGreen = green * 0.105
-                newBlue = blue * 0.105
+                newRed[i] = red * 0.105
+                newGreen[i] = green * 0.105
+                newBlue[i] = blue * 0.105
                 }
             else {
                 let newRGB = board[i].style.backgroundColor.substring(4, 
@@ -48,7 +60,9 @@ function draw() {
                 let darkRed = newRGB.substring(0, newRGB.indexOf(','))
                 let darkGreen = newRGB.substring(newRGB.indexOf(',') + 2, newRGB.lastIndexOf(','))
                 let darkBlue = newRGB.substring(newRGB.lastIndexOf(',') + 2)
-                let darken = `rgb(${darkRed - newRed}, ${darkGreen - newGreen}, ${darkBlue - newBlue})`
+                let darken = `rgb(${darkRed - newRed[i]},
+                                  ${darkGreen - newGreen[i]},
+                                  ${darkBlue - newBlue[i]})`
                 board[i].style.backgroundColor = darken
             }
         })   
@@ -56,7 +70,7 @@ function draw() {
     }, 1);
 }
 
-button.addEventListener('click', reset)
+btnReset.addEventListener('click', reset)
 
 function reset(squares) {
     squares = window.prompt('Chose a number between 1 and 64')
@@ -86,5 +100,14 @@ function reset(squares) {
     createGrid()
     draw()
     }, 2);
+    }
+}
+
+btnClear.addEventListener('click', clear)
+
+function clear() {
+    for (let i = 0; i < width * height; i++) {
+        const boxes = document.querySelectorAll('.box')
+        boxes[i].style.backgroundColor = ""
     }
 }

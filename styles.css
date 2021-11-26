@@ -14,6 +14,12 @@ body {
     width: 90vh;
 }
 
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 70%;
+}
+
 .grid {
     display: flex;
     flex-direction: column;
