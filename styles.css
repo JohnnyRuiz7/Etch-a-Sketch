@@ -1,0 +1,40 @@
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 90vh;
+    width: 90vh;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 90%;
+}
+
+.container {
+    display: flex;
+    flex-grow: 1;
+}
+
+.box {
+    display: flex;
+    flex-grow: 1;
+    border: 1px solid black;
+    background-color: white;
+}
+
+button {
+    margin: 10px auto 10px auto;
+    height: min-content;
+    width: min-content;
+}
