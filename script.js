@@ -94,12 +94,12 @@ function reset(squares) {
                 }
             }, 1);
         }
-    setTimeout(() => {
-    width = +squares
-    height = +squares
-    createGrid()
-    draw()
-    }, 2);
+        setTimeout(() => {
+            width = +squares
+            height = +squares
+            createGrid()
+            draw()
+        }, 2);
     }
 }
 
